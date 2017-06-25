@@ -27,18 +27,25 @@
         <button class="btn btn-primary dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">example commands
         <span class="caret"></span></button>
         <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-          <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#command').val('dir');">dir</a></li>
           {% if isWindows==True %}
+          <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#command').val('dir');">dir</a></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#command').val('cls');">cls</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#command').val('vol');">vol</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#command').val('help');">help</a></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#command').val('tasklist');">tasklist</a></li>
           {% else %}
           <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#command').val('ls');">ls</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#command').val('ps');">ps</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#command').val('pwd');">pwd</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#command').val('jobs');">jobs</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#command').val('dir');">dir</a></li>
           {% endif %}
           <li role="presentation" class="divider"></li>
           {% if isWindows==True %}
           <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#command').val('.\\static\\script\\echo.bat');">execute batch file</a></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#command').val('dir .\\static\\script');">list scripts</a></li>
           {% else %}
+          <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#command').val('./static/script/helloworld.sh');">execute shell script</a></li>
           <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#command').val('ls ./static/script');">list scripts</a></li>
           {% endif %}
         </ul>
