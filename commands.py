@@ -15,7 +15,9 @@ def index():
     isWindows=False
 
     user_agent=UserAgent(request.headers.get('User-Agent'))
-    if str(user_agent).find('Windows')!=-1:
+    platform=sys.platform
+
+    if platform.startswith('win32'): # 'linux', 'darwin', 'win32'
         isWindows=True
 
     if request.method=='POST':
@@ -36,7 +38,7 @@ def index():
         command=': '+command
 
     try:
-        return render_template('index.html', output=output, command=command, user_agent=user_agent, isWindows=isWindows)
+        return render_template('index.html', output=output, command=command, user_agent=user_agent, platform=platform, isWindows=isWindows)
     except:
         return render_template('error.html', errormessage=sys.exc_info())
 
