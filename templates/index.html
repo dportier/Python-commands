@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Python commands</title>
+
+    <!-- Bootstrap -->
+    <link href="{{url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+<body>
+  <div class="container">
+    <h2>command input</h2>
+    <form id="commandform" action="{{url_for('index')}}" method="POST" name="commandform">
+      <textarea id="command" class="form-control" title="text input" placeholder="enter command here (dir, cls, tasklist, set, echo, help, ...) and press 'enter'" name="command" value="" rows="2"></textarea>
+      <br/>
+      <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">example commands
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+          <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#command').val('dir');">dir</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#command').val('cls');">cls</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#command').val('tasklist');">tasklist</a></li>
+          <li role="presentation" class="divider"></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#command').val('.\\static\\script\\echo.bat');">execute batch file</a></li>
+          <li role="presentation"><a role="menuitem" tabindex="-1" onclick="$('#command').val('dir .\\static\\script');">list scripts</a></li>
+        </ul>
+        <button type="command group" class="btn btn-primary">excute command</button>
+      </div>
+    </form>
+    <br/>
+    <h2>command output{{command}}</h2>
+    <textarea id="output" class="form-control" rows="20">{{output}}</textarea>
+  </div>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+
+  <script>
+  document.getElementById('command').onkeydown = function(e){
+     if(e.keyCode == 13){
+       document.commandform.submit();
+       document.commandform.method='post';
+     }
+  };
+  </script>
+
+</body>
+</html>
